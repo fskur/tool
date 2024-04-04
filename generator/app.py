@@ -15,10 +15,14 @@ def generate_calendar_data(selected_year, selected_month):
           "month": selected_month,
           "class": [
             { "day": day,
-              "time_am": request.json[f"day_{day}"]["time_am"],  # 初期値を空に設定
-              "time_pm": "",  # 初期値を空に設定
-              "menu_am": "",  # 初期値を空に設定
-              "menu_pm": ""   # 初期値を空に設定
+              "time_am": request.json[f"day_{day}"]["time_am"], # 初期値を空に設定
+              "menu_am": request.json[f"day_{day}"]["menu_am"], # 初期値を空に設定
+              "teacher_am": request.json[f"day_{day}"]["teacher_am"], # 初期値を空に設定
+              "price_am": request.json[f"day_{day}"]["price_am"], # 初期値を空に設定
+              "time_pm": request.json[f"day_{day}"]["time_pm"], # 初期値を空に設定
+              "menu_pm": request.json[f"day_{day}"]["menu_pm"], # 初期値を空に設定
+              "teacher_pm": request.json[f"day_{day}"]["teacher_pm"], # 初期値を空に設定
+              "price_pm": request.json[f"day_{day}"]["price_pm"]  # 初期値を空に設定
             }
           ]
         }

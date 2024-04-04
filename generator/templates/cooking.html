@@ -64,12 +64,12 @@
 
         var calendarHTML = "<table><tr><th>Sun</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th></tr><tr>";
 
-        // 月初より前の日の空白セルを埋める
+        // Fill in blank cells for days before the start of the month
         for (var i = 0; i < startingDay; i++) {
           calendarHTML += "<td></td>";
         }
 
-        // 選択フィールドと入力フィールドで月の日数を記入
+        // Fill in days of the month with select and input fields
         for (var day = 1; day <= daysInMonth; day++) {
           var dayOfWeek = new Date(selectedYear, selectedMonth - 1, day).getDay();
           calendarHTML += '<td id="entry_' + selectedYear + "-" + selectedMonth + "-" + day + '">';
@@ -84,22 +84,29 @@
               calendarHTML += '<option value="' + option + '">' + option + "</option>";
             });
             calendarHTML += "</select>";
+            calendarHTML += '<input type="text" id="menu_am_' + selectedYear + "-" + selectedMonth + "-" + day + '">';
+            calendarHTML += '<input type="text" id="teacher_am_' + selectedYear + "-" + selectedMonth + "-" + day + '">';
+            calendarHTML += '<input type="text" id="price_am_' + selectedYear + "-" + selectedMonth + "-" + day + '"></div>';
+
             calendarHTML += "<div>";
             calendarHTML += '<select id="time_pm_' + selectedYear + "-" + selectedMonth + "-" + day + '">';
             timeOptions2.forEach(function (option) {
               calendarHTML += '<option value="' + option + '">' + option + "</option>";
             });
             calendarHTML += "</select>";
+            calendarHTML += '<input type="text" id="menu_pm_' + selectedYear + "-" + selectedMonth + "-" + day + '">';
+            calendarHTML += '<input type="text" id="teacher_pm_' + selectedYear + "-" + selectedMonth + "-" + day + '">';
+            calendarHTML += '<input type="text" id="price_pm_' + selectedYear + "-" + selectedMonth + "-" + day + '"></div>';
           }
           calendarHTML += "</td>";
 
           if ((day + startingDay) % 7 === 0) {
-            // 7日ごとに新しい行を開始する
+            // Start a new row every 7 days
             calendarHTML += "</tr><tr>";
           }
         }
 
-        // 残りの曜日の空欄を埋める
+        // Fill in blank cells for remaining days of the week
         if ((startingDay + daysInMonth) % 7 !== 0) {
           var remainingDays = 7 - ((startingDay + daysInMonth) % 7);
           for (var i = 0; i < remainingDays; i++) {
@@ -120,8 +127,27 @@
         for (var day = 1; day <= daysInMonth; day++) {
           var time_am = document.getElementById("time_am_" + selectedYear + "-" + selectedMonth + "-" + day);
           if (time_am) time_am.value = "";
+
+          var menu_am = document.getElementById("menu_am_" + selectedYear + "-" + selectedMonth + "-" + day);
+          if (menu_am) menu_am.value = "";
+
+          var teacher_am = document.getElementById("teacher_am_" + selectedYear + "-" + selectedMonth + "-" + day);
+          if (teacher_am) teacher_am.value = "";
+
+          var price_am = document.getElementById("price_am_" + selectedYear + "-" + selectedMonth + "-" + day);
+          if (price_am) price_am.value = "";
+
           var time_pm = document.getElementById("time_pm_" + selectedYear + "-" + selectedMonth + "-" + day);
           if (time_pm) time_pm.value = "";
+
+          var menu_pm = document.getElementById("menu_pm_" + selectedYear + "-" + selectedMonth + "-" + day);
+          if (menu_pm) menu_pm.value = "";
+
+          var teacher_pm = document.getElementById("teacher_pm_" + selectedYear + "-" + selectedMonth + "-" + day);
+          if (teacher_pm) teacher_pm.value = "";
+
+          var price_pm = document.getElementById("price_pm_" + selectedYear + "-" + selectedMonth + "-" + day);
+          if (price_pm) price_pm.value = "";
         }
       }
 
@@ -137,13 +163,31 @@
           for (var day = 1; day <= daysInMonth; day++) {
             var time_am_element = document.getElementById("time_am_" + selectedYear + "-" + selectedMonth + "-" + day);
             var time_am = time_am_element ? time_am_element.value : ""; // time_amの値がnullの場合は空文字列を設定
+            var menu_am_element = document.getElementById("menu_am_" + selectedYear + "-" + selectedMonth + "-" + day);
+            var menu_am = menu_am_element ? menu_am_element.value : ""; // menu_amの値がnullの場合は空文字列を設定
+            var teacher_am_element = document.getElementById("teacher_am_" + selectedYear + "-" + selectedMonth + "-" + day);
+            var teacher_am = teacher_am_element ? teacher_am_element.value : ""; // teacher_amの値がnullの場合は空文字列を設定
+            var price_am_element = document.getElementById("price_am_" + selectedYear + "-" + selectedMonth + "-" + day);
+            var price_am = price_am_element ? price_am_element.value : ""; // price_amの値がnullの場合は空文字列を設定
             var time_pm_element = document.getElementById("time_pm_" + selectedYear + "-" + selectedMonth + "-" + day);
             var time_pm = time_pm_element ? time_pm_element.value : ""; // time_pmの値がnullの場合は空文字列を設定
+            var menu_pm_element = document.getElementById("menu_pm_" + selectedYear + "-" + selectedMonth + "-" + day);
+            var menu_pm = menu_pm_element ? menu_pm_element.value : ""; // menu_pmの値がnullの場合は空文字列を設定
+            var teacher_pm_element = document.getElementById("teacher_pm_" + selectedYear + "-" + selectedMonth + "-" + day);
+            var teacher_pm = teacher_pm_element ? teacher_pm_element.value : ""; // teacher_pmの値がnullの場合は空文字列を設定
+            var price_pm_element = document.getElementById("price_pm_" + selectedYear + "-" + selectedMonth + "-" + day);
+            var price_pm = price_pm_element ? price_pm_element.value : ""; // price_pmの値がnullの場合は空文字列を設定
 
             // フォームデータに追加
             formData[`day_${day}`] = {
               time_am: time_am,
+              menu_am: menu_am,
+              teacher_am: teacher_am,
+              price_am: price_am,
               time_pm: time_pm,
+              menu_pm: menu_pm,
+              teacher_pm: teacher_pm,
+              price_pm: price_pm,
             };
           }
 

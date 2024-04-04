@@ -9,6 +9,9 @@ tmpl = env.get_template('calendar.j2')
 with open('data.json', 'r', encoding='utf-8') as f:
     params = json.load(f)
 
+# JSONデータを出力して確認
+print(params)
+
 #レンダリングしてhtml出力
 rendered_html = tmpl.render(params)
 with open('result.html', 'w') as f:
