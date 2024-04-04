@@ -34,7 +34,7 @@ def run_script():
 
     calendar_data = generate_calendar_data(selected_year, selected_month, request.json)
 
-    with open("data.json", "w") as file:
+    with open("data.json", "w", encoding="utf-8") as file:
         json.dump(calendar_data, file, indent=2, ensure_ascii=False)
 
     print("JSONデータをファイルに書き込みました。")
