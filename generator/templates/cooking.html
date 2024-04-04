@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HTML Generator</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/reset.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/tool.css') }}" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+2:wght@100..900&family=Palanquin+Dark:wght@400;500;600;700&family=Outfit:wght@100..900&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    <div class="content">
+      <h1 class="palanquin-dark-bold">HTML Generator for cooking class</h1>
+      <div class="inner">
+        <div class="date">
+          <div class="date_select">
+            <select id="year"></select>
+            <label for="year">年</label>
+            <select id="month"></select>
+            <label for="month">月</label>
+          </div>
+          <button onclick="generateCalendar()">カレンダー表示</button>
+        </div>
+        <div class="value">
+          <button type="button" onclick="runScript()">実行</button>
+          <button onclick="clearValues()">入力値クリア</button>
+        </div>
+      </div>
+      <div id="calendarContainer"></div>
+      <div id="generatedHTML"></div>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        var selectYear = document.getElementById("year");
+        var currentYear = new Date().getFullYear();
+        var futureYear = currentYear + 1;
+
+        for (var year = currentYear; year <= futureYear; year++) {
+          var option = document.createElement("option");
+          option.value = year;
+          option.text = year;
+          selectYear.appendChild(option);
+        }
+
+        var selectMonth = document.getElementById("month");
+        for (var month = 1; month <= 12; month++) {
+          var option = document.createElement("option");
+          option.value = month;
+          option.text = month;
+          selectMonth.appendChild(option);
+        }
+      });
+
+      function generateCalendar() {
+        var selectedYear = document.getElementById("year").value;
+        var selectedMonth = document.getElementById("month").value;
+        var startingDay = new Date(selectedYear, selectedMonth - 1, 1).getDay();
+        var daysInMonth = new Date(selectedYear, selectedMonth, 0).getDate();
+
+        var timeOptions1 = ["", "10:00", "10:30"]; // プルダウン①の選択肢
+        var timeOptions2 = ["", "14:00"]; // プルダウン②の選択肢
+
+        var calendarHTML = "<table><tr><th>Sun</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th></tr><tr>";
+
+        // Fill in blank cells for days before the start of the month
+        for (var i = 0; i < startingDay; i++) {
+          calendarHTML += "<td></td>";
+        }
+
+        // Fill in days of the month with select and input fields
+        for (var day = 1; day <= daysInMonth; day++) {
+          var dayOfWeek = new Date(selectedYear, selectedMonth - 1, day).getDay();
+          calendarHTML += '<td id="entry_' + selectedYear + "-" + selectedMonth + "-" + day + '">';
+          if (dayOfWeek === 0 || dayOfWeek === 6) {
+            // 土曜日または日曜日の場合
+            calendarHTML += day;
+          } else {
+            calendarHTML += "<div>" + day + "</div>"; // 日付の表示
+            calendarHTML += "<div>";
+            calendarHTML += '<select id="select1_' + selectedYear + "-" + selectedMonth + "-" + day + '">';
+            timeOptions1.forEach(function (option) {
+              calendarHTML += '<option value="' + option + '">' + option + "</option>";
+            });
+            calendarHTML += "</select>";
+            calendarHTML += '<input type="text" id="menu_am_' + selectedYear + "-" + selectedMonth + "-" + day + '">';
+            calendarHTML += '<input type="text" id="teacher_am_' + selectedYear + "-" + selectedMonth + "-" + day + '">';
+            calendarHTML += '<input type="text" id="price_am_' + selectedYear + "-" + selectedMonth + "-" + day + '"></div>';
+
+            calendarHTML += "<div>";
+            calendarHTML += '<select id="select2_' + selectedYear + "-" + selectedMonth + "-" + day + '">';
+            timeOptions2.forEach(function (option) {
+              calendarHTML += '<option value="' + option + '">' + option + "</option>";
+            });
+            calendarHTML += "</select>";
+            calendarHTML += '<input type="text" id="menu_pm_' + selectedYear + "-" + selectedMonth + "-" + day + '">';
+            calendarHTML += '<input type="text" id="teacher_pm_' + selectedYear + "-" + selectedMonth + "-" + day + '">';
+            calendarHTML += '<input type="text" id="price_pm_' + selectedYear + "-" + selectedMonth + "-" + day + '"></div>';
+          }
+          calendarHTML += "</td>";
+
+          if ((day + startingDay) % 7 === 0) {
+            // Start a new row every 7 days
+            calendarHTML += "</tr><tr>";
+          }
+        }
+
+        // Fill in blank cells for remaining days of the week
+        if ((startingDay + daysInMonth) % 7 !== 0) {
+          var remainingDays = 7 - ((startingDay + daysInMonth) % 7);
+          for (var i = 0; i < remainingDays; i++) {
+            calendarHTML += "<td></td>";
+          }
+        }
+
+        calendarHTML += "</tr></table>";
+
+        document.getElementById("calendarContainer").innerHTML = calendarHTML;
+      }
+
+      function clearValues() {
+        var selectedYear = document.getElementById("year").value;
+        var selectedMonth = document.getElementById("month").value;
+        var daysInMonth = new Date(selectedYear, selectedMonth, 0).getDate();
+
+        for (var day = 1; day <= daysInMonth; day++) {
+          var menu_am = document.getElementById("menu_am_" + selectedYear + "-" + selectedMonth + "-" + day);
+          var teacher_am = document.getElementById("teacher_am_" + selectedYear + "-" + selectedMonth + "-" + day);
+          var price_am = document.getElementById("price_am_" + selectedYear + "-" + selectedMonth + "-" + day);
+          var menu_pm = document.getElementById("menu_pm_" + selectedYear + "-" + selectedMonth + "-" + day);
+          var teacher_pm = document.getElementById("teacher_pm_" + selectedYear + "-" + selectedMonth + "-" + day);
+          var price_pm = document.getElementById("price_pm_" + selectedYear + "-" + selectedMonth + "-" + day);
+
+          if (menu_am) menu_am.value = "";
+          if (teacher_am) teacher_am.value = "";
+          if (price_am) price_am.value = "";
+          if (menu_pm) menu_pm.value = "";
+          if (teacher_pm) teacher_pm.value = "";
+          if (price_pm) price_pm.value = "";
+        }
+      }
+
+      function runScript() {
+        var yearElement = document.getElementById("year");
+        var monthElement = document.getElementById("month");
+        if (yearElement && monthElement) {
+          var selectedYear = yearElement.value;
+          var selectedMonth = monthElement.value;
+          if (yearElement && monthElement) {
+            var selectedYear = yearElement.value;
+            var selectedMonth = monthElement.value;
+            var formData = { year: selectedYear, month: selectedMonth }; // JSON形式のデータを作成
+
+            var daysInMonth = new Date(selectedYear, selectedMonth, 0).getDate();
+            for (var day = 1; day <= daysInMonth; day++) {
+              var menu_am = document.getElementById("menu_am_" + selectedYear + "-" + selectedMonth + "-" + day).value;
+              var teacher_am = document.getElementById("teacher_am_" + selectedYear + "-" + selectedMonth + "-" + day).value;
+              var price_am = document.getElementById("price_am_" + selectedYear + "-" + selectedMonth + "-" + day).value;
+              var menu_pm = document.getElementById("menu_pm_" + selectedYear + "-" + selectedMonth + "-" + day).value;
+              var teacher_pm = document.getElementById("teacher_pm_" + selectedYear + "-" + selectedMonth + "-" + day).value;
+              var price_pm = document.getElementById("price_pm_" + selectedYear + "-" + selectedMonth + "-" + day).value;
+
+              // フォームデータに追加
+              formData[`day_${day}`] = {
+                time_am: menu_am,
+                menu_am: teacher_am,
+                other_am: price_am,
+                time_pm: menu_pm,
+                menu_pm: teacher_pm,
+                other_pm: price_pm,
+              };
+            }
+
+            fetch("/run_script", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(formData), // JSONデータを文字列に変換して送信
+            })
+              .then((response) => {
+                if (!response.ok) {
+                  throw new Error("Network response was not ok");
+                }
+                console.log("Data sent successfully");
+                return response.json(); // サーバーからのJSONレスポンスを取得
+              })
+              .then((data) => {
+                console.log(data);
+              })
+              .catch((error) => {
+                console.error("There has been a problem with your fetch operation:", error);
+              });
+          }
+        } else {
+          console.error("Year or month element is missing.");
+        }
+      }
+    </script>
+  </body>
+</html>

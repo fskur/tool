@@ -1,0 +1,63 @@
+                          <li>
+                            <table class="cook01">
+                              <tr>
+                                <th colspan="7">{{ month }}月のスケジュール</th>
+                              </tr>
+                              <tr class="bdr">
+                                <td class="bg_red w67">SUN</td>
+                                <td class="bg_orange w126">MON</td>
+                                <td class="bg_orange w126">TUE</td>
+                                <td class="bg_orange w126">WED</td>
+                                <td class="bg_orange w126">THU</td>
+                                <td class="bg_orange w126">FRI</td>
+                                <td class="bg_blue w67">SAT</td>
+                              </tr>
+                            {% set chunk_size = 7 %}
+                            {% for chunk in class|batch(chunk_size) %}
+                              <tr class="bdr">
+                              {% for item in chunk %}
+                                {% if item.time_am == "" %}
+                                  <td>
+                                    <span>{{ item.day }}</span>
+
+                                {% elif item.time_pm == "" %}
+                                  <td class="ch02 accepting">
+                                    <span>{{ item.day }}</span><br />
+                                    <img class="mb_05" src="https://placehold.jp/65909f/ffffff/100x23.png" alt="" /><br />
+                                    <a href="#0508">{{ item.menu_am }}</a>
+                                  </td>
+
+                                {% else %}
+                                  {% if item.menu_pm == "" %}
+                                    <td class="ch accepting">
+                                      <span>{{ item.day }}</span><br />
+                                      <img class="mb_05" src="https://placehold.jp/65909f/ffffff/100x23.png" alt="" /><br />
+                                      <img class="mb_05" src="https://placehold.jp/dcd0a3/ffffff/100x23.png" alt="" /><br />
+                                      <a href="#0508">{{ item.menu_am }}</a>
+                                    </td>
+
+                                  {% else %}
+                                    <td class="ch accepting" style="background-position: center bottom 0.65rem">
+                                      <span>{{ item.day }}</span>
+                                      <div class="mb_05">
+
+                                      {% if item.time_am == "10:30" %}
+                                        <img class="mb_05" src="https://placehold.jp/65909f/ffffff/100x23.png" alt="" /><br />
+                                      {% else %}
+                                        <img class="mb_05" src="https://placehold.jp/9f6587/ffffff/100x23.png" alt="" /><br />
+                                      {% endif %}
+
+                                        <a href="#0508">{{ item.menu_am }}</a>
+                                      </div>
+                                      <div class="mb_30">
+                                        <img class="mb_05" src="https://placehold.jp/dcd0a3/ffffff/100x23.png" alt="" /><br />
+                                        <a href="#0508">{{ item.menu_pm }}</a>
+                                      </div>
+                                    </td>
+                                  {% endif %}
+                                {% endif %}
+                              {% endfor %}
+                              </tr>
+                            {% endfor %}
+                            </table>
+                          </li>
