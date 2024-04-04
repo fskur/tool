@@ -3,10 +3,10 @@
   "class": [
     {
       "day": 1,
-      "time_am": "",
-      "menu_am": "",
-      "teacher_am": "",
-      "price_am": "",
+      "time_am": "10:00",
+      "menu_am": "a",
+      "teacher_am": "a",
+      "price_am": "a",
       "time_pm": "",
       "menu_pm": "",
       "teacher_pm": "",

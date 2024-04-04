@@ -1,32 +1,29 @@
 import datetime
+import calendar
 import json
 from flask import Flask, render_template, request, jsonify
 
 app = Flask(__name__)
 
 def generate_calendar_data(selected_year, selected_month):
-    starting_day = datetime.datetime(selected_year, selected_month, 1).weekday()
-    days_in_month = (datetime.datetime(selected_year, selected_month % 12 + 1, 1) - datetime.datetime(selected_year, selected_month, 1)).days
-
-    calendar_data = []
-
+    days_in_month = calendar.monthrange(selected_year, selected_month)[1]
+    calendar_data = {
+        "month": selected_month,
+        "class": []
+    }
     for day in range(1, days_in_month + 1):
         day_data = {
-          "month": selected_month,
-          "class": [
-            { "day": day,
-              "time_am": request.json[f"day_{day}"]["time_am"], # 初期値を空に設定
-              "menu_am": request.json[f"day_{day}"]["menu_am"], # 初期値を空に設定
-              "teacher_am": request.json[f"day_{day}"]["teacher_am"], # 初期値を空に設定
-              "price_am": request.json[f"day_{day}"]["price_am"], # 初期値を空に設定
-              "time_pm": request.json[f"day_{day}"]["time_pm"], # 初期値を空に設定
-              "menu_pm": request.json[f"day_{day}"]["menu_pm"], # 初期値を空に設定
-              "teacher_pm": request.json[f"day_{day}"]["teacher_pm"], # 初期値を空に設定
-              "price_pm": request.json[f"day_{day}"]["price_pm"]  # 初期値を空に設定
-            }
-          ]
+            "day": day,
+            "time_am": request.json.get(f"day_{day}", {}).get("time_am", ""), # 初期値を空に設定
+            "menu_am": request.json.get(f"day_{day}", {}).get("menu_am", ""), # 初期値を空に設定
+            "teacher_am": request.json.get(f"day_{day}", {}).get("teacher_am", ""), # 初期値を空に設定
+            "price_am": request.json.get(f"day_{day}", {}).get("price_am", ""), # 初期値を空に設定
+            "time_pm": request.json.get(f"day_{day}", {}).get("time_pm", ""), # 初期値を空に設定
+            "menu_pm": request.json.get(f"day_{day}", {}).get("menu_pm", ""), # 初期値を空に設定
+            "teacher_pm": request.json.get(f"day_{day}", {}).get("teacher_pm", ""), # 初期値を空に設定
+            "price_pm": request.json.get(f"day_{day}", {}).get("price_pm", "")  # 初期値を空に設定
         }
-        calendar_data.append(day_data)
+        calendar_data["class"].append(day_data)
 
     return calendar_data
 
