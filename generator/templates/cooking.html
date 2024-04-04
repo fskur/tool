@@ -29,7 +29,6 @@
         </div>
       </div>
       <div id="calendarContainer"></div>
-      <div id="generatedHTML"></div>
     </div>
 
     <script>
@@ -65,12 +64,12 @@
 
         var calendarHTML = "<table><tr><th>Sun</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th></tr><tr>";
 
-        // Fill in blank cells for days before the start of the month
+        // 月初より前の日の空白セルを埋める
         for (var i = 0; i < startingDay; i++) {
           calendarHTML += "<td></td>";
         }
 
-        // Fill in days of the month with select and input fields
+        // 選択フィールドと入力フィールドで月の日数を記入
         for (var day = 1; day <= daysInMonth; day++) {
           var dayOfWeek = new Date(selectedYear, selectedMonth - 1, day).getDay();
           calendarHTML += '<td id="entry_' + selectedYear + "-" + selectedMonth + "-" + day + '">';
@@ -80,34 +79,27 @@
           } else {
             calendarHTML += "<div>" + day + "</div>"; // 日付の表示
             calendarHTML += "<div>";
-            calendarHTML += '<select id="select1_' + selectedYear + "-" + selectedMonth + "-" + day + '">';
+            calendarHTML += '<select id="time_am_' + selectedYear + "-" + selectedMonth + "-" + day + '">';
             timeOptions1.forEach(function (option) {
               calendarHTML += '<option value="' + option + '">' + option + "</option>";
             });
             calendarHTML += "</select>";
-            calendarHTML += '<input type="text" id="menu_am_' + selectedYear + "-" + selectedMonth + "-" + day + '">';
-            calendarHTML += '<input type="text" id="teacher_am_' + selectedYear + "-" + selectedMonth + "-" + day + '">';
-            calendarHTML += '<input type="text" id="price_am_' + selectedYear + "-" + selectedMonth + "-" + day + '"></div>';
-
             calendarHTML += "<div>";
-            calendarHTML += '<select id="select2_' + selectedYear + "-" + selectedMonth + "-" + day + '">';
+            calendarHTML += '<select id="time_pm_' + selectedYear + "-" + selectedMonth + "-" + day + '">';
             timeOptions2.forEach(function (option) {
               calendarHTML += '<option value="' + option + '">' + option + "</option>";
             });
             calendarHTML += "</select>";
-            calendarHTML += '<input type="text" id="menu_pm_' + selectedYear + "-" + selectedMonth + "-" + day + '">';
-            calendarHTML += '<input type="text" id="teacher_pm_' + selectedYear + "-" + selectedMonth + "-" + day + '">';
-            calendarHTML += '<input type="text" id="price_pm_' + selectedYear + "-" + selectedMonth + "-" + day + '"></div>';
           }
           calendarHTML += "</td>";
 
           if ((day + startingDay) % 7 === 0) {
-            // Start a new row every 7 days
+            // 7日ごとに新しい行を開始する
             calendarHTML += "</tr><tr>";
           }
         }
 
-        // Fill in blank cells for remaining days of the week
+        // 残りの曜日の空欄を埋める
         if ((startingDay + daysInMonth) % 7 !== 0) {
           var remainingDays = 7 - ((startingDay + daysInMonth) % 7);
           for (var i = 0; i < remainingDays; i++) {
@@ -126,19 +118,10 @@
         var daysInMonth = new Date(selectedYear, selectedMonth, 0).getDate();
 
         for (var day = 1; day <= daysInMonth; day++) {
-          var menu_am = document.getElementById("menu_am_" + selectedYear + "-" + selectedMonth + "-" + day);
-          var teacher_am = document.getElementById("teacher_am_" + selectedYear + "-" + selectedMonth + "-" + day);
-          var price_am = document.getElementById("price_am_" + selectedYear + "-" + selectedMonth + "-" + day);
-          var menu_pm = document.getElementById("menu_pm_" + selectedYear + "-" + selectedMonth + "-" + day);
-          var teacher_pm = document.getElementById("teacher_pm_" + selectedYear + "-" + selectedMonth + "-" + day);
-          var price_pm = document.getElementById("price_pm_" + selectedYear + "-" + selectedMonth + "-" + day);
-
-          if (menu_am) menu_am.value = "";
-          if (teacher_am) teacher_am.value = "";
-          if (price_am) price_am.value = "";
-          if (menu_pm) menu_pm.value = "";
-          if (teacher_pm) teacher_pm.value = "";
-          if (price_pm) price_pm.value = "";
+          var time_am = document.getElementById("time_am_" + selectedYear + "-" + selectedMonth + "-" + day);
+          if (time_am) time_am.value = "";
+          var time_pm = document.getElementById("time_pm_" + selectedYear + "-" + selectedMonth + "-" + day);
+          if (time_pm) time_pm.value = "";
         }
       }
 
@@ -148,52 +131,42 @@
         if (yearElement && monthElement) {
           var selectedYear = yearElement.value;
           var selectedMonth = monthElement.value;
-          if (yearElement && monthElement) {
-            var selectedYear = yearElement.value;
-            var selectedMonth = monthElement.value;
-            var formData = { year: selectedYear, month: selectedMonth }; // JSON形式のデータを作成
+          var formData = { year: selectedYear, month: selectedMonth }; // JSON形式のデータを作成
 
-            var daysInMonth = new Date(selectedYear, selectedMonth, 0).getDate();
-            for (var day = 1; day <= daysInMonth; day++) {
-              var menu_am = document.getElementById("menu_am_" + selectedYear + "-" + selectedMonth + "-" + day).value;
-              var teacher_am = document.getElementById("teacher_am_" + selectedYear + "-" + selectedMonth + "-" + day).value;
-              var price_am = document.getElementById("price_am_" + selectedYear + "-" + selectedMonth + "-" + day).value;
-              var menu_pm = document.getElementById("menu_pm_" + selectedYear + "-" + selectedMonth + "-" + day).value;
-              var teacher_pm = document.getElementById("teacher_pm_" + selectedYear + "-" + selectedMonth + "-" + day).value;
-              var price_pm = document.getElementById("price_pm_" + selectedYear + "-" + selectedMonth + "-" + day).value;
+          var daysInMonth = new Date(selectedYear, selectedMonth, 0).getDate();
+          for (var day = 1; day <= daysInMonth; day++) {
+            var time_am_element = document.getElementById("time_am_" + selectedYear + "-" + selectedMonth + "-" + day);
+            var time_am = time_am_element ? time_am_element.value : ""; // time_amの値がnullの場合は空文字列を設定
+            var time_pm_element = document.getElementById("time_pm_" + selectedYear + "-" + selectedMonth + "-" + day);
+            var time_pm = time_pm_element ? time_pm_element.value : ""; // time_pmの値がnullの場合は空文字列を設定
 
-              // フォームデータに追加
-              formData[`day_${day}`] = {
-                time_am: menu_am,
-                menu_am: teacher_am,
-                other_am: price_am,
-                time_pm: menu_pm,
-                menu_pm: teacher_pm,
-                other_pm: price_pm,
-              };
-            }
-
-            fetch("/run_script", {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify(formData), // JSONデータを文字列に変換して送信
-            })
-              .then((response) => {
-                if (!response.ok) {
-                  throw new Error("Network response was not ok");
-                }
-                console.log("Data sent successfully");
-                return response.json(); // サーバーからのJSONレスポンスを取得
-              })
-              .then((data) => {
-                console.log(data);
-              })
-              .catch((error) => {
-                console.error("There has been a problem with your fetch operation:", error);
-              });
+            // フォームデータに追加
+            formData[`day_${day}`] = {
+              time_am: time_am,
+              time_pm: time_pm,
+            };
           }
+
+          fetch("/run_script", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(formData), // JSONデータを文字列に変換して送信
+          })
+            .then((response) => {
+              if (!response.ok) {
+                throw new Error("Network response was not ok");
+              }
+              console.log("Data sent successfully");
+              return response.json(); // サーバーからのJSONレスポンスを取得
+            })
+            .then((data) => {
+              console.log(data);
+            })
+            .catch((error) => {
+              console.error("There has been a problem with your fetch operation:", error);
+            });
         } else {
           console.error("Year or month element is missing.");
         }
