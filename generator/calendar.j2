@@ -1,7 +1,7 @@
                           <li>
                             <table class="cook01">
                               <tr>
-                                <th colspan="7">{{ month }}月のスケジュール</th>
+                                <th colspan="7">{{ class_info.month }}月のスケジュール</th>
                               </tr>
                               <tr class="bdr">
                                 <td class="bg_red w67">SUN</td>
@@ -13,7 +13,7 @@
                                 <td class="bg_blue w67">SAT</td>
                               </tr>
                             {% set chunk_size = 7 %}
-                            {% for chunk in class|batch(chunk_size) %}
+                            {% for chunk in class_info.class|batch(chunk_size) %}
                               <tr class="bdr">
                               {% for item in chunk %}
                                 {% if item.time_am == "" %}
