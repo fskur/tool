@@ -23,3 +23,4 @@ if calendar_data:
 else:
     # エラーメッセージや代替の処理を行う
     print("calendar_data リストが空です。")
+    
