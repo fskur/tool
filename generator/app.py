@@ -1,6 +1,7 @@
 import datetime
 import calendar
 import json
+import subprocess
 from flask import Flask, render_template, request, jsonify
 
 app = Flask(__name__)
@@ -39,6 +40,15 @@ def run_script():
 
     print("JSONデータをファイルに書き込みました。")
     return jsonify(calendar_data)
+
+@app.route('/run_rendering', methods=['POST'])
+def run_rendering():
+    try:
+        subprocess.run(['python', 'rendering.py'], check=True)
+        return jsonify({"message": "Rendering script executed successfully"})
+    except subprocess.CalledProcessError:
+        return jsonify({"error": "Error executing rendering script"})
+
 
 @app.route('/tool/generator/cooking.html')
 def cooking_page():

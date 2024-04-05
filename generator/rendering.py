@@ -1,5 +1,6 @@
 from jinja2 import Environment, FileSystemLoader
 import json
+from app import app
 
 # テンプレート読み込み
 env = Environment(loader=FileSystemLoader('./', encoding='utf8'))
@@ -18,3 +19,7 @@ if calendar_data:
 else:
     # エラーメッセージや代替の処理を行う
     print("calendar_data リストが空です。")
+
+# Flaskアプリケーションを実行
+if __name__ == '__main__':
+    app.run(port=8001)

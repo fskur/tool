@@ -24,7 +24,7 @@
           <button onclick="generateCalendar()">カレンダー表示</button>
         </div>
         <div class="value">
-          <button type="button" onclick="runScript()">実行</button>
+          <button type="button" onclick="runScript(); runRenderingScript();">実行</button>
           <button onclick="clearValues()">入力値クリア</button>
         </div>
       </div>
@@ -214,6 +214,28 @@
         } else {
           console.error("Year or month element is missing.");
         }
+      }
+      function runRenderingScript() {
+        fetch("/run_rendering", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({}), // リクエストボディは空です
+        })
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error("Network response was not ok");
+            }
+            console.log("Rendering script executed successfully");
+            return response.json();
+          })
+          .then((data) => {
+            console.log(data);
+          })
+          .catch((error) => {
+            console.error("There has been a problem with your fetch operation:", error);
+          });
       }
     </script>
   </body>
