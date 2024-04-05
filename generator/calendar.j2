@@ -26,13 +26,13 @@
                 <td class="ch02 accepting">
                   <span>{{ item.day }}</span><br />
                   <img class="mb_05" src="img/ico_time01.png" alt="" /><br />
-                  <a href="#0508">{{ item.menu_am }}</a>
+                  <a href="#{{ item.day_link }}">{{ item.menu_am }}</a>
                 </td>
               {% elif item.time_am == "10:00" %}
                 <td class="ch02 accepting">
                   <span>{{ item.day }}</span><br />
                   <img class="mb_05" src="img/ico_time03.png" alt="" /><br />
-                  <a href="#0508">{{ item.menu_am }}</a>
+                  <a href="#{{ item.day_link }}">{{ item.menu_am }}</a>
                 </td>
               {% endif %}
             {% elif item.time_pm != "" %}
@@ -42,14 +42,14 @@
                     <span>{{ item.day }}</span><br />
                     <img class="mb_05" src="img/ico_time01.png" alt="" /><br />
                     <img class="mb_05" src="img/ico_time02.png" alt="" /><br />
-                    <a href="#0508">{{ item.menu_am }}</a>
+                    <a href="#{{ item.day_link }}">{{ item.menu_am }}</a>
                   </td>
                 {% elif item.time_am == "10:00" %}
                   <td class="ch02 accepting">
                     <span>{{ item.day }}</span><br />
                     <img class="mb_05" src="img/ico_time03.png" alt="" /><br />
                     <img class="mb_05" src="img/ico_time02.png" alt="" /><br />
-                    <a href="#0508">{{ item.menu_am }}</a>
+                    <a href="#{{ item.day_link }}">{{ item.menu_am }}</a>
                   </td>
                 {% endif %}
               {% elif item.menu_pm != "" %}
@@ -61,11 +61,11 @@
                   {% elif item.time_am == "10:00" %}
                     <img class="mb_05" src="img/ico_time03.png" alt="" /><br />
                   {% endif %}
-                    <a href="#0508">{{ item.menu_am }}</a>
+                    <a href="#{{ item.day_link }}">{{ item.menu_am }}</a>
                   </div>
                   <div class="mb_30">
                     <img class="mb_05" src="img/ico_time02.png" alt="" /><br />
-                    <a href="#0508">{{ item.menu_pm }}</a>
+                    <a href="#{{ item.day_link }}">{{ item.menu_pm }}</a>
                   </div>
                 </td>
               {% endif %}

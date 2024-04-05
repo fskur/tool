@@ -3,6 +3,7 @@
   "class": [
     {
       "day": 1,
+      "day_link": "0101",
       "time_am": "10:00",
       "menu_am": "a",
       "teacher_am": "",
@@ -14,17 +15,19 @@
     },
     {
       "day": 2,
+      "day_link": "0102",
       "time_am": "10:00",
       "menu_am": "a",
       "teacher_am": "",
       "price_am": "",
-      "time_pm": "14:00",
+      "time_pm": "",
       "menu_pm": "",
       "teacher_pm": "",
       "price_pm": ""
     },
     {
       "day": 3,
+      "day_link": "0103",
       "time_am": "10:00",
       "menu_am": "a",
       "teacher_am": "",
@@ -36,6 +39,7 @@
     },
     {
       "day": 4,
+      "day_link": "0104",
       "time_am": "",
       "menu_am": "",
       "teacher_am": "",
@@ -47,6 +51,7 @@
     },
     {
       "day": 5,
+      "day_link": "0105",
       "time_am": "",
       "menu_am": "",
       "teacher_am": "",
@@ -58,6 +63,7 @@
     },
     {
       "day": 6,
+      "day_link": "0106",
       "time_am": "",
       "menu_am": "",
       "teacher_am": "",
@@ -69,6 +75,7 @@
     },
     {
       "day": 7,
+      "day_link": "0107",
       "time_am": "",
       "menu_am": "",
       "teacher_am": "",
@@ -80,6 +87,7 @@
     },
     {
       "day": 8,
+      "day_link": "0108",
       "time_am": "",
       "menu_am": "",
       "teacher_am": "",
@@ -91,6 +99,7 @@
     },
     {
       "day": 9,
+      "day_link": "0109",
       "time_am": "",
       "menu_am": "",
       "teacher_am": "",
@@ -102,6 +111,7 @@
     },
     {
       "day": 10,
+      "day_link": "0110",
       "time_am": "",
       "menu_am": "",
       "teacher_am": "",
@@ -113,6 +123,7 @@
     },
     {
       "day": 11,
+      "day_link": "0111",
       "time_am": "",
       "menu_am": "",
       "teacher_am": "",
@@ -124,6 +135,7 @@
     },
     {
       "day": 12,
+      "day_link": "0112",
       "time_am": "",
       "menu_am": "",
       "teacher_am": "",
@@ -135,6 +147,7 @@
     },
     {
       "day": 13,
+      "day_link": "0113",
       "time_am": "",
       "menu_am": "",
       "teacher_am": "",
@@ -146,6 +159,7 @@
     },
     {
       "day": 14,
+      "day_link": "0114",
       "time_am": "",
       "menu_am": "",
       "teacher_am": "",
@@ -157,6 +171,7 @@
     },
     {
       "day": 15,
+      "day_link": "0115",
       "time_am": "",
       "menu_am": "",
       "teacher_am": "",
@@ -168,6 +183,7 @@
     },
     {
       "day": 16,
+      "day_link": "0116",
       "time_am": "",
       "menu_am": "",
       "teacher_am": "",
@@ -179,6 +195,7 @@
     },
     {
       "day": 17,
+      "day_link": "0117",
       "time_am": "",
       "menu_am": "",
       "teacher_am": "",
@@ -190,6 +207,7 @@
     },
     {
       "day": 18,
+      "day_link": "0118",
       "time_am": "",
       "menu_am": "",
       "teacher_am": "",
@@ -201,6 +219,7 @@
     },
     {
       "day": 19,
+      "day_link": "0119",
       "time_am": "",
       "menu_am": "",
       "teacher_am": "",
@@ -212,6 +231,7 @@
     },
     {
       "day": 20,
+      "day_link": "0120",
       "time_am": "",
       "menu_am": "",
       "teacher_am": "",
@@ -223,6 +243,7 @@
     },
     {
       "day": 21,
+      "day_link": "0121",
       "time_am": "",
       "menu_am": "",
       "teacher_am": "",
@@ -234,6 +255,7 @@
     },
     {
       "day": 22,
+      "day_link": "0122",
       "time_am": "",
       "menu_am": "",
       "teacher_am": "",
@@ -245,6 +267,7 @@
     },
     {
       "day": 23,
+      "day_link": "0123",
       "time_am": "",
       "menu_am": "",
       "teacher_am": "",
@@ -256,6 +279,7 @@
     },
     {
       "day": 24,
+      "day_link": "0124",
       "time_am": "",
       "menu_am": "",
       "teacher_am": "",
@@ -267,6 +291,7 @@
     },
     {
       "day": 25,
+      "day_link": "0125",
       "time_am": "",
       "menu_am": "",
       "teacher_am": "",
@@ -278,6 +303,7 @@
     },
     {
       "day": 26,
+      "day_link": "0126",
       "time_am": "",
       "menu_am": "",
       "teacher_am": "",
@@ -289,6 +315,7 @@
     },
     {
       "day": 27,
+      "day_link": "0127",
       "time_am": "",
       "menu_am": "",
       "teacher_am": "",
@@ -300,6 +327,7 @@
     },
     {
       "day": 28,
+      "day_link": "0128",
       "time_am": "",
       "menu_am": "",
       "teacher_am": "",
@@ -311,6 +339,7 @@
     },
     {
       "day": 29,
+      "day_link": "0129",
       "time_am": "",
       "menu_am": "",
       "teacher_am": "",
@@ -322,6 +351,7 @@
     },
     {
       "day": 30,
+      "day_link": "0130",
       "time_am": "",
       "menu_am": "",
       "teacher_am": "",
@@ -333,6 +363,7 @@
     },
     {
       "day": 31,
+      "day_link": "0131",
       "time_am": "",
       "menu_am": "",
       "teacher_am": "",

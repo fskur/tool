@@ -14,8 +14,10 @@ def generate_calendar_data(selected_year, selected_month, request_data):
         "class": []
     }
     for day in range(1, days_in_month + 1):
+        mmdd = f"{selected_month:02d}{day:02d}"  # 月と日をmmdd形式に変換
         day_data = {
             "day": day,
+            "day_link": mmdd,
             "time_am": request_data.get(f"day_{day}", {}).get("time_am", ""), # 初期値を空に設定
             "menu_am": request_data.get(f"day_{day}", {}).get("menu_am", ""), # 初期値を空に設定
             "teacher_am": request_data.get(f"day_{day}", {}).get("teacher_am", ""), # 初期値を空に設定
