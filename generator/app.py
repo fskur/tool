@@ -55,5 +55,5 @@ def run_rendering():
 def cooking_page():
     return render_template('cooking.html')
 
-# if __name__ == '__main__':
-#     app.run(port=8000)
+if __name__ == '__main__':
+    app.run(port=8000)
