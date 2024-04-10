@@ -79,24 +79,24 @@
           } else {
             calendarHTML += "<div>" + day + "</div>"; // 日付の表示
             calendarHTML += "<div>";
-            calendarHTML += '<select id="time_am_' + selectedYear + "-" + selectedMonth + "-" + day + '">';
+            calendarHTML += '<select id="time_am_' + selectedYear + "-" + selectedMonth + "-" + day + '" autocomplete="off">';
             timeOptions1.forEach(function (option) {
               calendarHTML += '<option value="' + option + '">' + option + "</option>";
             });
             calendarHTML += "</select>";
-            calendarHTML += '<input type="text" id="menu_am_' + selectedYear + "-" + selectedMonth + "-" + day + '">';
-            calendarHTML += '<input type="text" id="teacher_am_' + selectedYear + "-" + selectedMonth + "-" + day + '">';
-            calendarHTML += '<input type="text" id="price_am_' + selectedYear + "-" + selectedMonth + "-" + day + '"></div>';
+            calendarHTML += '<input type="text" id="menu_am_' + selectedYear + "-" + selectedMonth + "-" + day + '" autocomplete="off">';
+            calendarHTML += '<input type="text" id="teacher_am_' + selectedYear + "-" + selectedMonth + "-" + day + '" autocomplete="off">';
+            calendarHTML += '<input type="text" id="price_am_' + selectedYear + "-" + selectedMonth + "-" + day + '" autocomplete="off"></div>';
 
             calendarHTML += "<div>";
-            calendarHTML += '<select id="time_pm_' + selectedYear + "-" + selectedMonth + "-" + day + '">';
+            calendarHTML += '<select id="time_pm_' + selectedYear + "-" + selectedMonth + "-" + day + '" autocomplete="off">';
             timeOptions2.forEach(function (option) {
               calendarHTML += '<option value="' + option + '">' + option + "</option>";
             });
             calendarHTML += "</select>";
-            calendarHTML += '<input type="text" id="menu_pm_' + selectedYear + "-" + selectedMonth + "-" + day + '">';
-            calendarHTML += '<input type="text" id="teacher_pm_' + selectedYear + "-" + selectedMonth + "-" + day + '">';
-            calendarHTML += '<input type="text" id="price_pm_' + selectedYear + "-" + selectedMonth + "-" + day + '"></div>';
+            calendarHTML += '<input type="text" id="menu_pm_' + selectedYear + "-" + selectedMonth + "-" + day + '" autocomplete="off">';
+            calendarHTML += '<input type="text" id="teacher_pm_' + selectedYear + "-" + selectedMonth + "-" + day + '" autocomplete="off">';
+            calendarHTML += '<input type="text" id="price_pm_' + selectedYear + "-" + selectedMonth + "-" + day + '" autocomplete="off"></div>';
           }
           calendarHTML += "</td>";
 
