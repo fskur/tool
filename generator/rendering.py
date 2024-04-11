@@ -1,7 +1,9 @@
 import json
 import subprocess
-import pyperclip
+from flask import Flask, render_template, request, jsonify
 from jinja2 import Environment, FileSystemLoader
+
+app = Flask(__name__)
 
 # テンプレート読み込み
 env = Environment(loader=FileSystemLoader('./', encoding='utf8'))
@@ -15,12 +17,16 @@ with open('data.json', 'r', encoding='utf-8') as f:
 if calendar_data:
     # レンダリングしてhtml出力
     rendered_html = tmpl.render(class_info=calendar_data)
-    with open('result.html', 'w') as f:
+    with open('templates/result.html', 'w', encoding='utf-8') as f:
         f.write(rendered_html)
-    
-    # クリップボードにコピー
-    pyperclip.copy(rendered_html)
+
 else:
     # エラーメッセージや代替の処理を行う
     print("calendar_data リストが空です。")
-    
+
+@app.route('/tool/generator/result.html')
+def result_page():
+    return render_template('result.html')
+
+if __name__ == '__main__':
+    app.run(port=8000)

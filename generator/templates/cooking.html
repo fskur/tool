@@ -25,7 +25,7 @@
         </div>
         <div class="value">
           <button type="button" onclick="runScript(); runRenderingScript();">実行</button>
-          <button onclick="clearValues()">入力値クリア</button>
+          <button id="copyButton" class="outfit-bold">Copy!</button>
         </div>
       </div>
       <div id="calendarContainer"></div>
@@ -237,6 +237,21 @@
             console.error("There has been a problem with your fetch operation:", error);
           });
       }
+
+      document.getElementById("copyButton").addEventListener("click", function () {
+        fetch("result.html") // パスを修正
+          .then((response) => response.text())
+          .then((data) => {
+            navigator.clipboard.writeText(data).then(
+              function () {
+                console.log("コピー成功!");
+              },
+              function (err) {
+                console.error("コピー失敗:", err);
+              }
+            );
+          });
+      });
     </script>
   </body>
 </html>
