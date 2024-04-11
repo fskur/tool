@@ -88,5 +88,9 @@ def run_rendering():
 def cooking_page():
     return render_template('cooking.html')
 
+@app.route('/tool/generator/result.html')
+def result_page():
+    return render_template('result.html')
+
 if __name__ == '__main__':
     app.run(port=8000)
