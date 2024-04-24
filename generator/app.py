@@ -71,18 +71,16 @@ def run_script():
 
     with open("data.json", "w", encoding="utf-8") as file:
         json.dump(calendar_data, file, indent=2, ensure_ascii=False)
-
-    print("JSONデータをファイルに書き込みました。")
-    return jsonify(calendar_data)
+    return jsonify({"message": "JSONデータができたよ"})
 
 @app.route('/run_rendering', methods=['POST'])
 def run_rendering():
     try:
         python_executable = sys.executable
         subprocess.run([python_executable, 'rendering.py'], check=True)
-        return jsonify({"message": "Rendering script executed successfully"})
+        return jsonify({"message": "htmlが作れたよ"})
     except subprocess.CalledProcessError:
-        return jsonify({"error": "Error executing rendering script"})
+        return jsonify({"error": "htmlが作れないよ"})
 
 @app.route('/tool/generator/cooking.html')
 def cooking_page():
