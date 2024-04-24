@@ -40,10 +40,12 @@ button {
 h1 {
   font-size: 3rem;
 }
+.content > div {
+  margin-top: 40px;
+}
 .inner {
   display: flex;
   justify-content: space-between;
-  margin-top: 40px;
 }
 
 /* -------------------- */
