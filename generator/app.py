@@ -1,11 +1,37 @@
-import datetime
 import calendar
 import json
-import subprocess
-import sys
-from flask import Flask, render_template, request, jsonify
+import os
+import uuid
+from flask import Flask, render_template, request, session, jsonify, send_from_directory
+from jinja2 import Environment, FileSystemLoader
 
 app = Flask(__name__)
+
+# セッションキーの暗号化キーを設定
+app.secret_key = 'your_secret_key_here'
+
+# ユーザーIDをセットアップする関数
+def setup_user():
+    if 'user_id' not in session:
+        # ユーザーIDがセッションにない場合、新しいユーザーIDを生成
+        session['user_id'] = generate_user_id()  # generate_user_id() は適切なユーザーIDを生成する関数を想定
+    return session['user_id']
+
+# 全てのリクエストの前にユーザーIDをセットアップ
+@app.before_request
+def before_request():
+    setup_user()
+
+def generate_user_id():
+    # ユーザーIDをUUID形式で生成
+    return str(uuid.uuid4())
+
+# テンプレート読み込み
+env = Environment(loader=FileSystemLoader('./', encoding='utf8'))
+tmpl = env.get_template('calendar.j2')
+
+# ユーザーホームディレクトリのパスを取得
+user_home = os.path.expanduser("~")
 
 def generate_calendar_data(selected_year, selected_month, request_data):
     # 月初の週の日付を計算
@@ -71,24 +97,40 @@ def run_script():
 
     with open("data.json", "w", encoding="utf-8") as file:
         json.dump(calendar_data, file, indent=2, ensure_ascii=False)
-    return jsonify({"message": "JSONデータができたよ"})
+    return jsonify({"message": "JSONデータができたよ！"})
 
 @app.route('/run_rendering', methods=['POST'])
 def run_rendering():
     try:
-        python_executable = sys.executable
-        subprocess.run([python_executable, 'rendering.py'], check=True)
-        return jsonify({"message": "htmlが作れたよ"})
-    except subprocess.CalledProcessError:
-        return jsonify({"error": "htmlが作れないよ"})
+        # 設定ファイル読み込み
+        with open('data.json', 'r', encoding='utf-8') as f:
+            calendar_data = json.load(f)
+
+        # calendar_data リストが空でない場合のみ処理を実行
+        if calendar_data:
+            # レンダリングしてhtml出力
+            rendered_html = tmpl.render(class_info=calendar_data)
+
+            # result.htmlをアプリケーションのディレクトリに保存
+            file_path = os.path.join(os.getcwd(), "result.html")
+            with open(file_path, 'w', encoding='utf-8') as f:
+                # ファイルに書き込む
+                f.write(rendered_html)
+
+            return jsonify({"message": "htmlができたよ！"})
+        else:
+            # エラーメッセージや代替の処理を行う
+            return jsonify({"error": "calendar_data リストが空っぽ"})
+    except Exception as e:
+        return jsonify({"error": str(e)})
 
 @app.route('/tool/generator/cooking.html')
 def cooking_page():
     return render_template('cooking.html')
 
 @app.route('/tool/generator/result.html')
-def result_page():
-    return render_template('result.html')
+def get_result_html():
+    return send_from_directory(os.path.expanduser("~/tool/generator/"), 'result.html')
 
 if __name__ == '__main__':
-    app.run(port=8000)
+    app.run()

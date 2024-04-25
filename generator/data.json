@@ -28,11 +28,11 @@
     {
       "day": 2,
       "day_link": "0102",
-      "time_am": "",
+      "time_am": "10:30",
       "menu_am": "",
       "teacher_am": "",
       "price_am": "",
-      "time_pm": "",
+      "time_pm": "14:00",
       "menu_pm": "",
       "teacher_pm": "",
       "price_pm": ""
@@ -40,11 +40,11 @@
     {
       "day": 3,
       "day_link": "0103",
-      "time_am": "",
+      "time_am": "10:30",
       "menu_am": "",
       "teacher_am": "",
       "price_am": "",
-      "time_pm": "",
+      "time_pm": "14:00",
       "menu_pm": "",
       "teacher_pm": "",
       "price_pm": ""
@@ -52,7 +52,7 @@
     {
       "day": 4,
       "day_link": "0104",
-      "time_am": "10:00",
+      "time_am": "",
       "menu_am": "",
       "teacher_am": "",
       "price_am": "",
@@ -64,7 +64,7 @@
     {
       "day": 5,
       "day_link": "0105",
-      "time_am": "10:00",
+      "time_am": "",
       "menu_am": "",
       "teacher_am": "",
       "price_am": "",

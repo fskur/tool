@@ -65,6 +65,14 @@ th {
   font-style: normal;
   font-weight: 600;
 }
+th:first-of-type,
+th:last-of-type {
+  width: 5%;
+}
+th:not(first-of-type),
+th:not(last-of-type) {
+  width: 16%;
+}
 td {
   background-color: #f1f7f6;
   font-weight: 600;
@@ -77,8 +85,11 @@ td:nth-of-type(n + 2) {
 tr:nth-child(n + 3) td {
   border-top: 1px solid #fff;
 }
-td div:nth-of-type(n + 2) {
-  margin-top: 16px;
+td div:nth-of-type(2) {
+  margin-top: 8px;
+}
+td div:nth-of-type(3) {
+  margin-top: 4px;
 }
 td > div * {
   display: block;
@@ -135,6 +146,18 @@ td > div *:nth-child(n + 2) {
 #calendarContainer {
   border-radius: 8px;
   margin-top: 12px;
+}
+
+[id*="_am_"] {
+  background-color: #fdf8f2;
+}
+[id*="_pm_"] {
+  background-color: #fdf2f8;
+}
+
+input::placeholder {
+  color: #b8bbba;
+  font-weight: 400;
 }
 
 /* ---------------------------------------- */

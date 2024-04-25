@@ -12,8 +12,13 @@
   </head>
   <body>
     <div class="content">
-      <h1 class="palanquin-dark-bold">HTML Generator for cooking class</h1>
-      <div>説明が入ります。</div>
+      <h1 class="palanquin-dark-bold">HTML Generator</h1>
+      <div>
+        <p>
+          【ニチガス 我孫子料理教室】カレンダーのソースコードを生成します。<br />
+          テキストエリアに情報を入力した後、『実行』ボタンを押してください。ソースコードがコピーされるので、そのまま該当箇所に貼り付けできます。
+        </p>
+      </div>
       <div class="inner">
         <div class="date">
           <div class="date_select">
@@ -26,7 +31,7 @@
         </div>
         <div class="value">
           <button type="button" onclick="runScript(); runRenderingScript();">実行</button>
-          <button id="copyButton" class="outfit-bold">Copy!</button>
+          <button id="clearButton" class="outfit-bold">Clear</button>
         </div>
       </div>
       <div id="calendarContainer"></div>
@@ -52,6 +57,10 @@
           option.text = month;
           selectMonth.appendChild(option);
         }
+
+        // clearButtonのクリックイベントを設定
+        var clearButton = document.getElementById("clearButton");
+        clearButton.addEventListener("click", clearValues);
       });
 
       function generateCalendar() {
@@ -80,24 +89,24 @@
           } else {
             calendarHTML += "<div>" + day + "</div>"; // 日付の表示
             calendarHTML += "<div>";
-            calendarHTML += '<select id="time_am_' + selectedYear + "-" + selectedMonth + "-" + day + '" autocomplete="off">';
+            calendarHTML += '<select id="time_am_' + selectedYear + "-" + selectedMonth + "-" + day + '" autocomplete="off" onchange="toggleInputs(this)">';
             timeOptions1.forEach(function (option) {
               calendarHTML += '<option value="' + option + '">' + option + "</option>";
             });
             calendarHTML += "</select>";
-            calendarHTML += '<input type="text" id="menu_am_' + selectedYear + "-" + selectedMonth + "-" + day + '" autocomplete="off">';
-            calendarHTML += '<input type="text" id="teacher_am_' + selectedYear + "-" + selectedMonth + "-" + day + '" autocomplete="off">';
-            calendarHTML += '<input type="text" id="price_am_' + selectedYear + "-" + selectedMonth + "-" + day + '" autocomplete="off"></div>';
+            calendarHTML += '<input type="text" id="menu_am_' + selectedYear + "-" + selectedMonth + "-" + day + '" autocomplete="off" class="hidden" placeholder="メニュー">';
+            // calendarHTML += '<input type="text" id="teacher_am_' + selectedYear + "-" + selectedMonth + "-" + day + '" autocomplete="off" class="hidden" placeholder="講師">';
+            // calendarHTML += '<input type="text" id="price_am_' + selectedYear + "-" + selectedMonth + "-" + day + '" autocomplete="off" class="hidden" placeholder="受講料"></div>';
 
             calendarHTML += "<div>";
-            calendarHTML += '<select id="time_pm_' + selectedYear + "-" + selectedMonth + "-" + day + '" autocomplete="off">';
+            calendarHTML += '<select id="time_pm_' + selectedYear + "-" + selectedMonth + "-" + day + '" autocomplete="off" onchange="toggleInputs(this)">';
             timeOptions2.forEach(function (option) {
               calendarHTML += '<option value="' + option + '">' + option + "</option>";
             });
             calendarHTML += "</select>";
-            calendarHTML += '<input type="text" id="menu_pm_' + selectedYear + "-" + selectedMonth + "-" + day + '" autocomplete="off">';
-            calendarHTML += '<input type="text" id="teacher_pm_' + selectedYear + "-" + selectedMonth + "-" + day + '" autocomplete="off">';
-            calendarHTML += '<input type="text" id="price_pm_' + selectedYear + "-" + selectedMonth + "-" + day + '" autocomplete="off"></div>';
+            calendarHTML += '<input type="text" id="menu_pm_' + selectedYear + "-" + selectedMonth + "-" + day + '" autocomplete="off" class="hidden" placeholder="メニュー">';
+            // calendarHTML += '<input type="text" id="teacher_pm_' + selectedYear + "-" + selectedMonth + "-" + day + '" autocomplete="off" class="hidden" placeholder="講師">';
+            // calendarHTML += '<input type="text" id="price_pm_' + selectedYear + "-" + selectedMonth + "-" + day + '" autocomplete="off" class="hidden" placeholder="受講料"></div>';
           }
           calendarHTML += "</td>";
 
@@ -120,35 +129,60 @@
         document.getElementById("calendarContainer").innerHTML = calendarHTML;
       }
 
+      function toggleInputs(selectElement) {
+        var parentDiv = selectElement.parentNode;
+        var inputs = parentDiv.querySelectorAll("input");
+        var selectedValue = selectElement.value;
+
+        inputs.forEach(function (input) {
+          if (selectedValue) {
+            input.classList.remove("hidden");
+          } else {
+            input.classList.add("hidden");
+            input.value = ""; // 値をクリアする
+          }
+        });
+      }
+
       function clearValues() {
         var selectedYear = document.getElementById("year").value;
         var selectedMonth = document.getElementById("month").value;
         var daysInMonth = new Date(selectedYear, selectedMonth, 0).getDate();
 
         for (var day = 1; day <= daysInMonth; day++) {
-          var time_am = document.getElementById("time_am_" + selectedYear + "-" + selectedMonth + "-" + day);
-          if (time_am) time_am.value = "";
+          var dayOfWeek = new Date(selectedYear, selectedMonth - 1, day).getDay();
+          if (dayOfWeek !== 0 && dayOfWeek !== 6) {
+            // 平日のみ処理する
+            var time_am = document.getElementById("time_am_" + selectedYear + "-" + selectedMonth + "-" + day);
+            if (time_am) {
+              time_am.value = "";
+              toggleInputs(time_am); // inputタグの表示/非表示を切り替える
+            }
 
-          var menu_am = document.getElementById("menu_am_" + selectedYear + "-" + selectedMonth + "-" + day);
-          if (menu_am) menu_am.value = "";
+            var menu_am = document.getElementById("menu_am_" + selectedYear + "-" + selectedMonth + "-" + day);
+            if (menu_am) menu_am.value = "";
 
-          var teacher_am = document.getElementById("teacher_am_" + selectedYear + "-" + selectedMonth + "-" + day);
-          if (teacher_am) teacher_am.value = "";
+            var teacher_am = document.getElementById("teacher_am_" + selectedYear + "-" + selectedMonth + "-" + day);
+            if (teacher_am) teacher_am.value = "";
 
-          var price_am = document.getElementById("price_am_" + selectedYear + "-" + selectedMonth + "-" + day);
-          if (price_am) price_am.value = "";
+            var price_am = document.getElementById("price_am_" + selectedYear + "-" + selectedMonth + "-" + day);
+            if (price_am) price_am.value = "";
 
-          var time_pm = document.getElementById("time_pm_" + selectedYear + "-" + selectedMonth + "-" + day);
-          if (time_pm) time_pm.value = "";
+            var time_pm = document.getElementById("time_pm_" + selectedYear + "-" + selectedMonth + "-" + day);
+            if (time_pm) {
+              time_pm.value = "";
+              toggleInputs(time_pm); // inputタグの表示/非表示を切り替える
+            }
 
-          var menu_pm = document.getElementById("menu_pm_" + selectedYear + "-" + selectedMonth + "-" + day);
-          if (menu_pm) menu_pm.value = "";
+            var menu_pm = document.getElementById("menu_pm_" + selectedYear + "-" + selectedMonth + "-" + day);
+            if (menu_pm) menu_pm.value = "";
 
-          var teacher_pm = document.getElementById("teacher_pm_" + selectedYear + "-" + selectedMonth + "-" + day);
-          if (teacher_pm) teacher_pm.value = "";
+            var teacher_pm = document.getElementById("teacher_pm_" + selectedYear + "-" + selectedMonth + "-" + day);
+            if (teacher_pm) teacher_pm.value = "";
 
-          var price_pm = document.getElementById("price_pm_" + selectedYear + "-" + selectedMonth + "-" + day);
-          if (price_pm) price_pm.value = "";
+            var price_pm = document.getElementById("price_pm_" + selectedYear + "-" + selectedMonth + "-" + day);
+            if (price_pm) price_pm.value = "";
+          }
         }
       }
 
@@ -216,6 +250,7 @@
           console.error("Year or month element is missing.");
         }
       }
+
       function runRenderingScript() {
         fetch("/run_rendering", {
           method: "POST",
@@ -237,22 +272,32 @@
           .catch((error) => {
             console.error("There has been a problem with your fetch operation:", error);
           });
-      }
 
-      document.getElementById("copyButton").addEventListener("click", function () {
-        fetch("result.html") // パスを修正
-          .then((response) => response.text())
-          .then((data) => {
-            navigator.clipboard.writeText(data).then(
-              function () {
-                console.log("コピー成功!");
-              },
-              function (err) {
-                console.error("コピー失敗:", err);
-              }
-            );
-          });
-      });
+        var confirmed = confirm("HTMLが生成されました！\nコピーしますか？");
+        if (confirmed) {
+          // ユーザーが「はい」を選択した場合の処理
+          fetch("https://fskur.pythonanywhere.com/tool/generator/result.html") // フルのURLを指定
+            .then((response) => response.text())
+            .then((data) => {
+              navigator.clipboard.writeText(data).then(
+                function () {
+                  console.log("コピー成功!");
+                },
+                function (err) {
+                  console.error("コピー失敗:", err);
+                }
+              );
+            });
+        } else {
+          // ユーザーが「いいえ」を選択した場合の処理
+          // 何もしないか、必要に応じて他の処理を記述
+          console.log("コピーを中止しました。");
+        }
+
+        // 値をクリアボタンのクリックイベント
+        var clearButton = document.getElementById("clearButton");
+        clearButton.addEventListener("click", clearValues);
+      }
     </script>
   </body>
 </html>
