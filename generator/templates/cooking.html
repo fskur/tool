@@ -134,14 +134,14 @@
         var inputs = parentDiv.querySelectorAll("input");
         var selectedValue = selectElement.value;
 
-        inputs.forEach(function (input) {
-          if (selectedValue) {
-            input.classList.remove("hidden");
-          } else {
-            input.classList.add("hidden");
-            input.value = ""; // 値をクリアする
-          }
-        });
+        // 関連する input 要素のみを表示または非表示にする
+        var relatedInput = parentDiv.querySelector("input");
+        if (selectedValue) {
+          relatedInput.classList.remove("hidden");
+        } else {
+          relatedInput.classList.add("hidden");
+          relatedInput.value = ""; // 値をクリアする
+        }
       }
 
       function clearValues() {
@@ -293,10 +293,6 @@
           // 何もしないか、必要に応じて他の処理を記述
           console.log("コピーを中止しました。");
         }
-
-        // 値をクリアボタンのクリックイベント
-        var clearButton = document.getElementById("clearButton");
-        clearButton.addEventListener("click", clearValues);
       }
     </script>
   </body>
