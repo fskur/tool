@@ -11,68 +11,45 @@
       <td class="bg_orange w126">THU</td>
       <td class="bg_orange w126">FRI</td>
       <td class="bg_blue w67">SAT</td>
-    </tr>
-    {% set chunk_size = 7 %}
-    {% for chunk in class_info.class|batch(chunk_size) %}
-      <tr class="bdr">
-        {% for item in chunk %}
-          {% if item.time_am == "" %}
-            <td>
-              <span>{{ item.day }}</span>
-            </td>
-          {% elif item.time_am != "" %}
-            {% if item.time_pm == "" %}
-              {% if item.time_am == "10:30" %}
-                <td class="ch02 accepting">
-                  <span>{{ item.day }}</span><br />
-                  <img class="mb_05" src="img/ico_time01.png" alt="" /><br />
-                  <a href="#{{ item.day_link }}">{{ item.menu_am }}</a>
-                </td>
-              {% elif item.time_am == "10:00" %}
-                <td class="ch02 accepting">
-                  <span>{{ item.day }}</span><br />
-                  <img class="mb_05" src="img/ico_time03.png" alt="" /><br />
-                  <a href="#{{ item.day_link }}">{{ item.menu_am }}</a>
-                </td>
-              {% endif %}
-            {% elif item.time_pm != "" %}
-              {% if item.menu_pm == "" %}
-                {% if item.time_am == "10:30" %}
-                  <td class="ch02 accepting">
-                    <span>{{ item.day }}</span><br />
-                    <img class="mb_05" src="img/ico_time01.png" alt="" /><br />
-                    <img class="mb_05" src="img/ico_time02.png" alt="" /><br />
-                    <a href="#{{ item.day_link }}">{{ item.menu_am }}</a>
-                  </td>
-                {% elif item.time_am == "10:00" %}
-                  <td class="ch02 accepting">
-                    <span>{{ item.day }}</span><br />
-                    <img class="mb_05" src="img/ico_time03.png" alt="" /><br />
-                    <img class="mb_05" src="img/ico_time02.png" alt="" /><br />
-                    <a href="#{{ item.day_link }}">{{ item.menu_am }}</a>
-                  </td>
-                {% endif %}
-              {% elif item.menu_pm != "" %}
-                <td class="ch accepting" style="background-position: center bottom 0.65rem">
-                  <span>{{ item.day }}</span>
-                  <div class="mb_05">
-                  {% if item.time_am == "10:30" %}
-                    <img class="mb_05" src="img/ico_time01.png" alt="" /><br />
-                  {% elif item.time_am == "10:00" %}
-                    <img class="mb_05" src="img/ico_time03.png" alt="" /><br />
-                  {% endif %}
-                    <a href="#{{ item.day_link }}">{{ item.menu_am }}</a>
-                  </div>
-                  <div class="mb_30">
-                    <img class="mb_05" src="img/ico_time02.png" alt="" /><br />
-                    <a href="#{{ item.day_link }}">{{ item.menu_pm }}</a>
-                  </div>
-                </td>
-              {% endif %}
-            {% endif %}
-          {% endif %}
-        {% endfor %}
-      </tr>
-    {% endfor %}
+    </tr>    {% set chunk_size = 7 %}{% for chunk in class_info.class|batch(chunk_size) %}
+    <tr class="bdr">{% for item in chunk %}{% if item.time_am == "" %}
+        <td>
+          <span>{{ item.day }}</span>
+        </td>{% elif item.time_am != "" %}{% if item.time_pm == "" %}{% if item.time_am == "10:30" %}
+        <td class="ch02 accepting">
+          <span>{{ item.day }}</span><br />
+          <img class="mb_05" src="img/ico_time01.png" alt="" /><br />
+          <a href="#{{ item.day_link }}">{{ item.menu_am }}</a>
+        </td>{% elif item.time_am == "10:00" %}
+        <td class="ch02 accepting">
+          <span>{{ item.day }}</span><br />
+          <img class="mb_05" src="img/ico_time03.png" alt="" /><br />
+          <a href="#{{ item.day_link }}">{{ item.menu_am }}</a>
+        </td>{% endif %}{% elif item.time_pm != "" %}{% if item.menu_pm == "" %}{% if item.time_am == "10:30" %}
+        <td class="ch accepting">
+          <span>{{ item.day }}</span><br />
+          <img class="mb_05" src="img/ico_time01.png" alt="" /><br />
+          <img class="mb_05" src="img/ico_time02.png" alt="" /><br />
+          <a href="#{{ item.day_link }}">{{ item.menu_am }}</a>
+        </td>{% elif item.time_am == "10:00" %}
+        <td class="ch accepting">
+          <span>{{ item.day }}</span><br />
+          <img class="mb_05" src="img/ico_time03.png" alt="" /><br />
+          <img class="mb_05" src="img/ico_time02.png" alt="" /><br />
+          <a href="#{{ item.day_link }}">{{ item.menu_am }}</a>
+        </td>{% endif %}{% elif item.menu_pm != "" %}
+        <td class="ch accepting" style="background-position: center bottom 0.65rem">
+          <span>{{ item.day }}</span>
+          <div class="mb_05">{% if item.time_am == "10:30" %}
+            <img class="mb_05" src="img/ico_time01.png" alt="" /><br />{% elif item.time_am == "10:00" %}
+            <img class="mb_05" src="img/ico_time03.png" alt="" /><br />{% endif %}
+            <a href="#{{ item.day_link }}">{{ item.menu_am }}</a>
+          </div>
+          <div class="mb_30">
+            <img class="mb_05" src="img/ico_time02.png" alt="" /><br />
+            <a href="#{{ item.day_link }}">{{ item.menu_pm }}</a>
+          </div>
+        </td>{% endif %}{% endif %}{% endif %}{% endfor %}
+      </tr>{% endfor %}
   </table>
 </li>

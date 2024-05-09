@@ -18,6 +18,7 @@
           【ニチガス 我孫子料理教室】カレンダーのソースコードを生成します。<br />
           テキストエリアに情報を入力した後、『実行』ボタンを押してください。ソースコードがコピーされるので、そのまま該当箇所に貼り付けできます。
         </p>
+        <p>午前と午後でメニューが同じときは、午前にのみ料理名を記入してください。</p>
       </div>
       <div class="inner">
         <div class="date">
@@ -72,7 +73,7 @@
         var timeOptions1 = ["", "10:00", "10:30"]; // プルダウン①の選択肢
         var timeOptions2 = ["", "14:00"]; // プルダウン②の選択肢
 
-        var calendarHTML = "<table><tr><th>Sun</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th></tr><tr>";
+        var calendarHTML = "<table><tr><th>sun</th><th>mon</th><th>tue</th><th>wed</th><th>thu</th><th>fri</th><th>sat</th></tr><tr>";
 
         // Fill in blank cells for days before the start of the month
         for (var i = 0; i < startingDay; i++) {
