@@ -15,7 +15,7 @@
       <h1 class="palanquin-dark-bold">HTML Generator</h1>
       <div>
         <p>
-          【ニチガス 我孫子料理教室】カレンダーのソースコードを生成します。<br />
+          【ニチガス 料理教室】カレンダーのソースコードを生成します。<br />
           テキストエリアに情報を入力した後、『実行』ボタンを押してください。ソースコードがコピーされるので、そのまま該当箇所に貼り付けできます。
         </p>
         <p>午前と午後でメニューが同じときは、午前にのみ料理名を記入してください。</p>
@@ -28,7 +28,8 @@
             <select id="month"></select>
             <label for="month">月</label>
           </div>
-          <button onclick="generateCalendar()">カレンダー表示</button>
+          <button onclick="generateCalendar01()">【我孫子】カレンダー表示</button>
+          <button onclick="generateCalendar02()">【越谷】カレンダー表示</button>
         </div>
         <div class="value">
           <button type="button" onclick="runScript(); runRenderingScript();">実行</button>
@@ -64,7 +65,8 @@
         clearButton.addEventListener("click", clearValues);
       });
 
-      function generateCalendar() {
+      // 我孫子教室
+      function generateCalendar01() {
         var selectedYear = document.getElementById("year").value;
         var selectedMonth = document.getElementById("month").value;
         var startingDay = new Date(selectedYear, selectedMonth - 1, 1).getDay();
@@ -109,6 +111,69 @@
             // calendarHTML += '<input type="text" id="teacher_pm_' + selectedYear + "-" + selectedMonth + "-" + day + '" autocomplete="off" class="hidden" placeholder="講師">';
             // calendarHTML += '<input type="text" id="price_pm_' + selectedYear + "-" + selectedMonth + "-" + day + '" autocomplete="off" class="hidden" placeholder="受講料"></div>';
           }
+          calendarHTML += "</td>";
+
+          if ((day + startingDay) % 7 === 0) {
+            // Start a new row every 7 days
+            calendarHTML += "</tr><tr>";
+          }
+        }
+
+        // Fill in blank cells for remaining days of the week
+        if ((startingDay + daysInMonth) % 7 !== 0) {
+          var remainingDays = 7 - ((startingDay + daysInMonth) % 7);
+          for (var i = 0; i < remainingDays; i++) {
+            calendarHTML += "<td></td>";
+          }
+        }
+
+        calendarHTML += "</tr></table>";
+
+        document.getElementById("calendarContainer").innerHTML = calendarHTML;
+      }
+      
+      // 越谷教室
+      function generateCalendar02() {
+        var selectedYear = document.getElementById("year").value;
+        var selectedMonth = document.getElementById("month").value;
+        var startingDay = new Date(selectedYear, selectedMonth - 1, 1).getDay();
+        var daysInMonth = new Date(selectedYear, selectedMonth, 0).getDate();
+
+        var timeOptions1 = ["", "10:00", "10:30"]; // プルダウン①の選択肢
+        var timeOptions2 = ["", "14:00"]; // プルダウン②の選択肢
+
+        var calendarHTML = "<table><tr><th>sun</th><th>mon</th><th>tue</th><th>wed</th><th>thu</th><th>fri</th><th>sat</th></tr><tr>";
+
+        // Fill in blank cells for days before the start of the month
+        for (var i = 0; i < startingDay; i++) {
+          calendarHTML += "<td></td>";
+        }
+
+        // Fill in days of the month with select and input fields
+        for (var day = 1; day <= daysInMonth; day++) {
+          var dayOfWeek = new Date(selectedYear, selectedMonth - 1, day).getDay();
+          calendarHTML += '<td id="entry_' + selectedYear + "-" + selectedMonth + "-" + day + '">';
+          calendarHTML += "<div>" + day + "</div>"; // 日付の表示
+          calendarHTML += "<div>";
+          calendarHTML += '<select id="time_am_' + selectedYear + "-" + selectedMonth + "-" + day + '" autocomplete="off" onchange="toggleInputs(this)">';
+          timeOptions1.forEach(function (option) {
+            calendarHTML += '<option value="' + option + '">' + option + "</option>";
+          });
+          calendarHTML += "</select>";
+          calendarHTML += '<input type="text" id="menu_am_' + selectedYear + "-" + selectedMonth + "-" + day + '" autocomplete="off" class="hidden" placeholder="メニュー">';
+          // calendarHTML += '<input type="text" id="teacher_am_' + selectedYear + "-" + selectedMonth + "-" + day + '" autocomplete="off" class="hidden" placeholder="講師">';
+          // calendarHTML += '<input type="text" id="price_am_' + selectedYear + "-" + selectedMonth + "-" + day + '" autocomplete="off" class="hidden" placeholder="受講料"></div>';
+
+          calendarHTML += "<div>";
+          calendarHTML += '<select id="time_pm_' + selectedYear + "-" + selectedMonth + "-" + day + '" autocomplete="off" onchange="toggleInputs(this)">';
+          timeOptions2.forEach(function (option) {
+            calendarHTML += '<option value="' + option + '">' + option + "</option>";
+          });
+          calendarHTML += "</select>";
+          calendarHTML += '<input type="text" id="menu_pm_' + selectedYear + "-" + selectedMonth + "-" + day + '" autocomplete="off" class="hidden" placeholder="メニュー">';
+          // calendarHTML += '<input type="text" id="teacher_pm_' + selectedYear + "-" + selectedMonth + "-" + day + '" autocomplete="off" class="hidden" placeholder="講師">';
+          // calendarHTML += '<input type="text" id="price_pm_' + selectedYear + "-" + selectedMonth + "-" + day + '" autocomplete="off" class="hidden" placeholder="受講料"></div>';
+          calendarHTML += "</div>";
           calendarHTML += "</td>";
 
           if ((day + startingDay) % 7 === 0) {

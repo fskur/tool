@@ -14,7 +14,7 @@ app.secret_key = 'your_secret_key_here'
 def setup_user():
     if 'user_id' not in session:
         # ユーザーIDがセッションにない場合、新しいユーザーIDを生成
-        session['user_id'] = generate_user_id()  # generate_user_id() は適切なユーザーIDを生成する関数を想定
+        session['user_id'] = generate_user_id()
     return session['user_id']
 
 # 全てのリクエストの前にユーザーIDをセットアップ

@@ -33,6 +33,7 @@ button {
   display: block;
   font-weight: 800;
   width: 100%;
+  padding: 16px 8px;
 }
 
 /* -------------------- */
@@ -46,6 +47,7 @@ h1 {
 .inner {
   display: flex;
   justify-content: space-between;
+  gap: 40px;
 }
 
 /* -------------------- */
@@ -65,13 +67,8 @@ th {
   font-style: normal;
   font-weight: 600;
 }
-th:first-of-type,
-th:last-of-type {
-  width: 5%;
-}
-th:not(first-of-type),
-th:not(last-of-type) {
-  width: 16%;
+th {
+  width: calc(100%/7);
 }
 td {
   background-color: #f1f7f6;
@@ -111,14 +108,21 @@ td > div *:nth-child(n + 2) {
 .date,
 .value {
   display: flex;
+  align-items: center;
   gap: 16px;
-  width: calc(50% - 40px);
+}
+.date {
+  width: 60%;
+}
+.value {
+  width: 40%;
 }
 
+.date .date_select {
+  width: 100%;
+}
 .date button {
   background-color: #a1ace5;
-  margin-left: 8px;
-  width: 160px;
 }
 .value > * {
   width: calc((100% - 16px) / 2);
