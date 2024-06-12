@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calendar Generator</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/reset.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/tool.css') }}" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+2:wght@100..900&family=Palanquin+Dark:wght@400;500;600;700&family=Outfit:wght@100..900&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    <div class="content">
+      <h1 class="palanquin-dark-bold">Calendar Generator</h1>
+      <div>
+        <p>
+          【医療医学系 イベントスケジュール】のカレンダーを生成します。<br />
+          作成したい年を選択後、『実行』ボタンを押してください。<br>
+          zipファイルがダウンロードされますので、解凍して所定の場所に格納してください。
+        </p>
+      </div>
+      <div class="inner">
+        <div class="date">
+          <div class="date_select">
+            <select id="year"></select>
+            <label for="year">年</label>
+          </div>
+        </div>
+        <form action="/download_calendar" method="get">
+            <button type="submit">カレンダーをダウンロード</button>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

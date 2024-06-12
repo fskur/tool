@@ -1,0 +1,93 @@
+@charset "utf-8";
+/* Copyright 2017 FSFIELD All Rights Reserved. */
+
+/* ------------------------------------------------------------
+
+Default elements
+
+------------------------------------------------------------ */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video{
+	border:0;
+	margin:0;
+	outline:0;
+	padding:0;
+	background:none;
+	-webkit-box-sizing:border-box;
+	-moz-box-sizing:border-box;
+	-ms-box-sizing:border-box;
+	-o-box-sizing:border-box;
+	box-sizing:border-box;
+	/*
+	font:inherit;
+	font-family:inherit;
+	*/
+	font-size: 100%;
+	font-style:inherit;
+	font-weight:inherit;
+	text-decoration:none;
+	vertical-align:baseline;
+}
+
+input,textarea{
+	-webkit-box-sizing:border-box;
+	-moz-box-sizing:border-box;
+	-ms-box-sizing:border-box;
+	-o-box-sizing:border-box;
+	box-sizing:border-box;
+}
+
+textarea{display:block;}
+
+html{font-size: 62.5%;}/*-10px-*/
+
+body{
+	line-height:1;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+article, aside, details, figcaption, dialog, figure, footer, header, main, nav, section, summary, textarea{display:block;}
+audio, canvas, video{display:inline-block;}
+
+a,
+a:link,
+a:visited,
+a:hover,
+a:active{
+	outline:none;
+	text-decoration:none;
+}
+
+table {
+    border-collapse:collapse;
+    border-spacing:0;
+}
+
+caption, th, td {
+  text-align: left;
+  font-weight: normal;
+  vertical-align: middle;
+}
+
+li{list-style:none;}
+
+blockquote, q{quotes:none;}
+blockquote:before, blockquote:after, 
+q:before, q:after{content:''; content:none;}
+
+input,
+select{vertical-align:middle;}
+
+img{vertical-align:top;}

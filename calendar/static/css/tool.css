@@ -1,0 +1,196 @@
+@charset "utf-8";
+
+* {
+  box-sizing: border-box;
+}
+
+/* -------------------- */
+
+body {
+  color: #111a19;
+  font-optical-sizing: auto;
+  font: normal 600 1.6rem "M PLUS 2", sans-serif;
+}
+
+/* -------------------- */
+
+select,
+button,
+input {
+  border-radius: 4px;
+  border: 2px solid #111a19;
+  color: #111a19;
+  font-optical-sizing: auto;
+  font: normal 600 1.4rem "M PLUS 2", sans-serif;
+  padding: 8px;
+}
+select,
+button {
+  cursor: pointer;
+}
+button {
+  border: 2px solid transparent;
+  display: block;
+  font-weight: 800;
+  width: 100%;
+  padding: 16px 8px;
+}
+
+/* -------------------- */
+
+h1 {
+  font-size: 3rem;
+}
+.content > div {
+  margin-top: 40px;
+}
+.inner {
+  display: flex;
+  justify-content: space-between;
+  gap: 40px;
+}
+
+/* -------------------- */
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+th,
+td {
+  padding: 8px 16px 8px;
+  text-align: center;
+}
+th {
+  background-color: #ffc90b;
+  font-family: "Palanquin Dark", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+}
+th {
+  width: calc(100%/7);
+}
+td {
+  background-color: #f1f7f6;
+  font-weight: 600;
+  vertical-align: top;
+}
+th:nth-of-type(n + 2),
+td:nth-of-type(n + 2) {
+  border-left: 1px solid #fff;
+}
+tr:nth-child(n + 3) td {
+  border-top: 1px solid #fff;
+}
+td div:nth-of-type(2) {
+  margin-top: 8px;
+}
+td div:nth-of-type(3) {
+  margin-top: 4px;
+}
+td > div * {
+  display: block;
+  width: 100%;
+}
+td > div *:nth-child(n + 2) {
+  margin-top: 4px;
+}
+
+/* ---------------------------------------- */
+
+.content {
+  width: 80%;
+  margin: 10% auto;
+}
+
+/* -------------------- */
+
+.date,
+.value {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.date {
+  width: 60%;
+}
+.value {
+  width: 40%;
+}
+
+.date .date_select {
+  width: 100%;
+}
+.date button {
+  background-color: #a1ace5;
+}
+.value > * {
+  width: calc((100% - 16px) / 2);
+}
+.value button:nth-child(2n + 1) {
+  background-color: #14ccad;
+}
+.value button:nth-child(2n) {
+  background-color: #a1cfe5;
+}
+.value button.outfit-bold {
+  font-size: 1.6rem;
+}
+
+.date button:hover,
+.value button:nth-child(2n + 1):hover,
+.value button:nth-child(2n):hover,
+#copyButton:hover {
+  background-color: #ffc90b;
+  border: 2px solid #111a19;
+}
+
+/* -------------------- */
+
+#calendarContainer {
+  border-radius: 8px;
+  margin-top: 12px;
+}
+
+[id*="_am_"] {
+  background-color: #fdf8f2;
+}
+[id*="_pm_"] {
+  background-color: #fdf2f8;
+}
+
+input::placeholder {
+  color: #b8bbba;
+  font-weight: 400;
+}
+
+/* ---------------------------------------- */
+
+.hidden {
+  display: none;
+}
+
+/* ---------------------------------------- */
+
+.palanquin-dark-regular {
+  font-family: "Palanquin Dark", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+.palanquin-dark-semibold {
+  font-family: "Palanquin Dark", sans-serif;
+  font-weight: 600;
+  font-style: normal;
+}
+.palanquin-dark-bold {
+  font-family: "Palanquin Dark", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.outfit-bold {
+  font-family: "Outfit", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: normal;
+}

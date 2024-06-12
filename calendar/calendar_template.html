@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no,address=no,email=no" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/viewport-extra@2.0.1/dist/iife/viewport-extra.min.js" defer></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // タブレット端末かどうかを判定
+        var ua = navigator.userAgent;
+        var isSmartPhone = ua.indexOf("iPhone") > -1 || (ua.indexOf("Android") > -1 && ua.indexOf("Mobile") > -1);
+        var isTablet = !isSmartPhone && (ua.indexOf("iPad") > -1 || (ua.indexOf("Macintosh") > -1 && "ontouchend" in document) || ua.indexOf("Android") > -1);
+        // タブレット端末でのみ最小幅を設定
+        if (isTablet) {
+          ViewportExtra.setContent({ minWidth: 1200, maxWidth: 1200 });
+          document.getElementById("wrap_all").classList.add("tab");
+        }
+      });
+    </script>
+    <title>{{ month }}月 イベントスケジュール 筑波大学医学医療系 総合ポータルサイト</title>
+    <link rel="canonical" href="https://www.md.tsukuba.ac.jp/top/medinfo/{{ '%02d_%02d' % (year % 100, month) }}.html" />
+    <meta name="description" content="{{ month }}月 筑波大学医学医療系の関係者が主催する公開セミナー等のスケジュールを掲載しています。" />
+    <meta name="keywords" content="" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+    <link href="/top/css/reset.css" media="all" rel="stylesheet" />
+    <link href="/top/css/common.css" media="all" rel="stylesheet" />
+    <link href="/top/css/medinfo.css" media="all" rel="stylesheet" />
+  </head>
+  <body>
+    <div id="wrap_all">
+      <div class="wrapper">
+        <header id="header">
+          <div id="wrap_top">
+            <div class="wrap_top_inner">
+              <h1>{{ month }}月 筑波大学医学医療系の関係者が主催する公開セミナー等のスケジュールを掲載しています</h1>
+            </div>
+          </div>
+          <div class="header_inner">
+            <ul>
+              <li class="h01">
+                <a href="/top/access/"><span>アクセス</span></a>
+              </li>
+              <li class="h02" id="btn_search01"><span>サイト内検索</span></li>
+              <li class="h03">
+                <a href="/top/en/"><span>ENGLISH</span></a>
+              </li>
+            </ul>
+            <p class="h_tsukuba">
+              <a href="https://www.tsukuba.ac.jp" target="_blank"><img src="/top/img/img_logo_univ01.png" alt="筑波大学" width="412" height="48" /></a>
+            </p>
+          </div>
+        </header>
+
+        <div class="side" id="side">
+          <div class="side_inner">
+            <p class="s_logo">
+              <a href="/top/">
+                <img class="pc" src="/top/img/img_logo01.png" alt="筑波大学医学医療系" width="292" height="296" />
+                <img class="sp" src="/top/img/img_logo02.png" alt="筑波大学医学医療系" width="512" height="160" />
+              </a>
+            </p>
+
+            <div class="drawer">
+              <div class="drawer_inner">
+                <p class="btn_language"><a href="/top/en/">ENGLISH</a></p>
+                <div class="search">
+                  <!-- GoogleCustomSearch -->
+                  <p>サイト内検索</p>
+                  <form action="https://www.md.tsukuba.ac.jp/top/search/">
+                    <div class="search_inner">
+                      <input type="hidden" name="cx" value="005142306057255170729:qyrftbd_3ny" />
+                      <input type="hidden" name="ie" value="UTF-8" />
+                      <div class="search_box"><input type="text" name="q" size="25" maxlength="255" /></div>
+                      <div class="search_btn"><input type="submit" name="btnG" value="Search" /></div>
+                    </div>
+                  </form>
+                  <!-- GoogleCustomSearch-->
+                </div>
+
+                <nav class="nav_global">
+                  <ul>
+                    <li class="g01">
+                      <a href="/top/"><span>ホーム</span></a>
+                    </li>
+                    <li class="g02">
+                      <a href="/top/med/"><span>医学医療系</span></a>
+                    </li>
+                    <li class="g03">
+                      <a href="/top/group/"><span>医学群</span></a>
+                    </li>
+                    <li class="g04">
+                      <a href="/top/grad/"><span>大学院</span></a>
+                    </li>
+                    <li class="g05">
+                      <a href="/top/research/"><span>研究組織</span></a>
+                      <ul class="sub">
+                        <li><a href="/top/research/bio.html">生命医科学域</a></li>
+                        <li><a href="/top/research/clinical.html">臨床医科学域</a></li>
+                      </ul>
+                    </li>
+                    <li class="g06">
+                      <a href="/top/current/"><span>研究トピックス</span></a>
+                    </li>
+                    <li class="g07">
+                      <a href="/top/activities/"><span>研究活動アーカイブ</span></a>
+                    </li>
+                    <li class="g08">
+                      <a href="/top/archive/"><span>研究業績</span></a>
+                    </li>
+                    <li class="g09">
+                      <a href="/top/medinfo/"><span>イベントスケジュール</span></a>
+                    </li>
+                    <li class="g10 sp">
+                      <a href="/top/access/"><span>アクセス</span></a>
+                    </li>
+                  </ul>
+                </nav>
+                <nav class="nav_side">
+                  <ul>
+                    <li class="s01">
+                      <a href="/top/recruit/"><span>教職員公募</span></a>
+                    </li>
+                    <li class="s02">
+                      <a href="/top/contact/"><span>お問い合わせ</span></a>
+                    </li>
+                  </ul>
+                </nav>
+
+                <div class="btn_close"></div>
+              </div>
+              <div class="overlay"></div>
+            </div>
+
+            <p class="s_tsukuba">
+              <a href="https://www.tsukuba.ac.jp" target="_blank"><img src="/top/img/img_logo_univ02.png" alt="筑波大学" width="149" height="50" /></a>
+            </p>
+
+            <div class="btn_menu">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="pagettl">
+          <h2>イ<span>ベ</span><span>ン</span><span>ト</span><span>ス</span><span>ケ</span><span>ジ</span><span>ュ</span><span>ー</span><span>ル</span></h2>
+          <nav class="breadcrumb">
+            <ul>
+              <li><a href="/top/">ホーム</a></li>
+              <li>イベントスケジュール</li>
+            </ul>
+          </nav>
+          <div class="shape">
+            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 92 106">
+              <path
+                class="st0"
+                d="M91,62.5c-1.3,24.4-22.7,43.4-47.8,42.4C18.1,104-1.2,83.4,0.1,59c1.3-24.4,22.7-43.4,47.8-42.4
+		c0.2,0,0.4,0,0.5,0C31.7,19.5,19,34,19,51.4C19,71,34.8,86.8,54.4,86.8c19.2,0,34.8-15.3,35.3-34.4C90.1,53.7,91.2,57.6,91,62.5z
+		M63.9,42.9c-8.9,6.6-19.2,8.2-28.7,3.3c10.2,10.7,26.6,12.7,38.2,4.1c12.6-9.4,14.9-27.8,5-41.1c-3-4-6.7-7.1-10.8-9.2
+		c0.9,1,1.8,1.9,2.6,3C80.1,16.4,76.6,33.5,63.9,42.9z"
+              />
+            </svg>
+          </div>
+        </div>
+
+        <main class="container03">
+          <div class="lead">
+            <p><span class="sp_br">医学関係者が主催する</span>公開セミナー等のスケジュールです</p>
+            <p>（掲載を希望される方は、<a class="link02" href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#107;&#111;&#117;&#104;&#111;&#117;&#64;&#109;&#100;&#46;&#116;&#115;&#117;&#107;&#117;&#98;&#97;&#46;&#97;&#99;&#46;&#106;&#112;">医学医療系広報担当</a>までメールでお知らせください。）</p>
+          </div>
+
+          <nav class="nav_medinfo top">
+            <p class="prev"><a href="/top/medinfo/">先月</a></p>
+            <p class="month">{{ year }}年{{ month }}月</p>
+            <p class="next"><a href="javascript:void(0);"></a></p>
+          </nav>
+
+          <table class="tbl_medinfo">
+            <tr>
+              <th class="sun">日</th>
+              <th class="mon">月</th>
+              <th class="tue">火</th>
+              <th class="wed">水</th>
+              <th class="thu">木</th>
+              <th class="fri">金</th>
+              <th class="sat">土</th>
+            </tr>{% for week in calendar %}
+            <tr>{% for day, is_holiday in week %}
+              <td class="{% if loop.index0 % 7 == 0 %}sun{% elif loop.index0 % 7 == 6 %}sat{% elif loop.index0 % 7 == 1 %}mon{% elif loop.index0 % 7 == 2 %}tue{% elif loop.index0 % 7 == 3 %}wed{% elif loop.index0 % 7 == 4 %}thu{% elif loop.index0 % 7 == 5 %}fri{% endif %}{% if day == 0 %} empty{% elif is_holiday %} holiday{% endif %}">
+                <div class="inner">
+                  <div class="col_l"><span class="num">{{ day if day != 0 else '' }}</span><span class="day">{{ "日月火水木金土"[loop.index0 % 7] }}</span>{% if is_holiday %}<span class="name">{{ holidays[(year, month, day)] }}</span>{% endif %}</div>
+                  <div class="col_r"></div>
+                </div>
+              </td>{% endfor %}
+            </tr>{% endfor %}
+          </table>
+
+          <nav class="nav_medinfo btm">
+            <p class="prev"><a href="/top/medinfo/">先月</a></p>
+            <p class="next"><a href="javascript:void(0);"></a></p>
+          </nav>
+        </main>
+
+        <div class="google_search" id="google_search">
+          <div class="gs_inner">
+            <!-- GoogleCustomSearch -->
+            <p>サイト内検索</p>
+            <form action="https://www.md.tsukuba.ac.jp/top/search/">
+              <div class="search_inner">
+                <input type="hidden" name="cx" value="005142306057255170729:qyrftbd_3ny" />
+                <input type="hidden" name="ie" value="UTF-8" />
+                <div class="search_box"><input type="text" name="q" size="25" maxlength="255" /></div>
+                <div class="search_btn"><input type="submit" name="btnG" value="Search" /></div>
+              </div>
+            </form>
+            <!-- GoogleCustomSearch-->
+          </div>
+          <div class="overlay"></div>
+        </div>
+
+        <footer id="footer">
+          <p id="pagetop"><span>PAGE TOP</span></p>
+
+          <div class="footer_inner01">
+            <p class="f_logo">
+              <a href="/top/"><img class="lazyload" data-src="/top/img/img_logo02.png" alt="筑波大学 医学医療系" width="512" height="160" /></a>
+            </p>
+            <address><span class="sp_br">〒305-8575　茨城県つくば市天王台1-1-1 </span>筑波大学医学医療系</address>
+            <address><span class="sp_br">Institute of Medicine, University of Tsukuba, </span>1-1-1 Tennodai, Tsukuba 305-8575</address>
+          </div>
+
+          <div class="footer_inner02">
+            <nav class="nav_footer01">
+              <div>
+                <ul>
+                  <li><a href="/top/med/">医学医療系</a></li>
+                  <li><a href="/top/group/">医学群</a></li>
+                  <li><a href="/top/grad/">大学院</a></li>
+                </ul>
+              </div>
+              <div class="f_research">
+                <ul>
+                  <li>
+                    <a href="/top/research/">研究組織</a>
+                    <ul class="sub">
+                      <li><a href="/top/research/bio.html">生命医科学域</a></li>
+                      <li><a href="/top/research/clinical.html">臨床医科学域</a></li>
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+              <div>
+                <ul>
+                  <li><a href="/top/current/">研究トピックス</a></li>
+                  <li><a href="/top/activities/">研究活動アーカイブ</a></li>
+                  <li><a href="/top/archive/">研究業績</a></li>
+                  <li><a href="/top/medinfo/">イベントスケジュール</a></li>
+                </ul>
+              </div>
+            </nav>
+            <nav class="nav_footer02">
+              <ul>
+                <li><a href="/top/">ホーム</a></li>
+                <li><a href="/top/access/">アクセス</a></li>
+                <li><a href="/top/recruit/">教職員公募</a></li>
+                <li><a href="/top/contact/">お問い合わせ</a></li>
+              </ul>
+            </nav>
+          </div>
+
+          <div class="footer_inner03">
+            <p>筑波大学医学医療系は筑波大学の医学研究と教育、医療の総合ポータルサイトです</p>
+            <p class="f_small"><small>&copy; 2021 md.tsukuba.ac All Rights Reserved.</small></p>
+          </div>
+        </footer>
+
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/lazyload@2.0.0-rc.2/lazyload.min.js" defer></script>
+        <script>
+          $(function () {
+            $("img.lazyload").lazyload();
+          });
+        </script>
+        <script src="/top/js/jquery.easing.1.3.js" defer></script>
+        <script src="/top/js/script.js" defer></script>
+        <script src="/top/js/jquery.frix.min.js" defer></script>
+        <script>
+          var _gaq = _gaq || [];
+          _gaq.push(["_setAccount", "UA-37186575-1"]);
+          _gaq.push(["_trackPageview"]);
+
+          (function () {
+            var ga = document.createElement("script");
+            ga.type = "text/javascript";
+            ga.async = true;
+            ga.src = ("https:" == document.location.protocol ? "https://ssl" : "http://www") + ".google-analytics.com/ga.js";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(ga, s);
+          })();
+        </script>
+      </div>
+      <!--wrapper-->
+    </div>
+    <!--wrap_all-->
+  </body>
+</html>
