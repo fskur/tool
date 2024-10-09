@@ -22,7 +22,7 @@ def get_holidays(year):
 def create_monthly_calendar(year, month, template, holidays):
     cal = calendar.Calendar(firstweekday=6)
     month_days = cal.monthdayscalendar(year, month)
-    
+
     # 祝日情報の追加
     month_calendar = []
     for week in month_days:
@@ -31,7 +31,7 @@ def create_monthly_calendar(year, month, template, holidays):
             is_holiday = (year, month, day) in holidays if day != 0 else False
             week_with_holidays.append((day, is_holiday))
         month_calendar.append(week_with_holidays)
-    
+
     template = Template(template)
     rendered_html = template.render(year=year, month=month, calendar=month_calendar, holidays=holidays)
     return rendered_html
